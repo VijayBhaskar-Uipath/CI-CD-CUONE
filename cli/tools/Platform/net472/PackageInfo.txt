@@ -1,0 +1,2 @@
+System.Activities.Presentation.Common.dll,System.Activities.Presentation.Common,6.0.0-20241218.3
+UiPath.Platform.dll,UiPath.Platform,24.11.1

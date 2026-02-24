@@ -18,27 +18,29 @@ env:
 
 jobs:
   print-details:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: echo-default-env-variables
+        shell: pwsh
         run: |
-          echo "Home: ${HOME}"
-          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
-          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
-          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          echo "GITHUB_SHA: ${GITHUB_SHA}"
-          echo "GITHUB_REF: ${GITHUB_REF}"
+          Write-Output "Home: $env:USERPROFILE"
+          Write-Output "GITHUB_WORKFLOW: $env:GITHUB_WORKFLOW"
+          Write-Output "GITHUB_ACTIONS: $env:GITHUB_ACTIONS"
+          Write-Output "GITHUB_ACTOR: $env:GITHUB_ACTOR"
+          Write-Output "GITHUB_REPOSITORY: $env:GITHUB_REPOSITORY"
+          Write-Output "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
+          Write-Output "GITHUB_WORKSPACE: $env:GITHUB_WORKSPACE"
+          Write-Output "GITHUB_SHA: $env:GITHUB_SHA"
+          Write-Output "GITHUB_REF: $env:GITHUB_REF"
 
   cleaner:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Runner workspace path
+        shell: pwsh
         run: |
-          echo "Cleaning up previous run"
-          rm -rf "${{ github.workspace }}"
+          Write-Output "Cleaning up previous run"
+          if (Test-Path "${{ github.workspace }}") { Remove-Item -LiteralPath "${{ github.workspace }}" -Recurse -Force -ErrorAction SilentlyContinue }
 
   build-uipath-nuget-package:
     needs: cleaner
@@ -61,7 +63,8 @@ jobs:
         run: |
           ${{ github.workspace }}\scripts\UiPathPack.ps1 `
           ${{ github.workspace }}\project.json `
-          -destination_folder ${{ github.workspace }}\package
+          -destination_folder ${{ github.workspace }}\package `
+          -CliPath ${{ github.workspace }}\cli\tools\uipcli.exe
 
       - name: Upload UiPath Artifacts
         uses: actions/upload-artifact@v4
