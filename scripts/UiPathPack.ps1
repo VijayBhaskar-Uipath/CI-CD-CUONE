@@ -44,8 +44,8 @@ Get-ChildItem -Path $projectRoot -Force | Where-Object { $_.Name -notin $exclude
     Copy-Item -Path $_.FullName -Destination $dest -Recurse -Force
 }
 
-Log "Running CLI: $CliPath pack $ProjectJsonPath $destination_folder"
-& $CliPath pack $ProjectJsonPath $destination_folder
+Log "Running CLI: $CliPath package pack \"$ProjectJsonPath\" -o \"$destination_folder\" -v $version"
+& $CliPath package pack "$ProjectJsonPath" -o "$destination_folder" -v $version
 if ($LASTEXITCODE -ne 0) { Log "CLI pack failed with exit code $LASTEXITCODE"; Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue; exit $LASTEXITCODE }
 
 Log "Pack completed; cleaning temp"
