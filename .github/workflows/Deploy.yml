@@ -12,8 +12,8 @@ env:
   PROJECT_FOLDER: Shared
   ORCH_URL: https://staging.uipath.com
   ORCH_TENANT: DefaultTenant
-  ORCH_CLIENT_ID: ADLqfy4M6cRUaEL6XOxiKpMqyPvjTuUi
-  ORCH_USER_KEY: WbF2D1YK4j4jLBJAhAYD3lKhJ3YqEVdHMRKzlXR3o2t5M
+  ORCH_CLIENT_ID: 37dd8930-88f5-4ce7-9a0f-0794c75a5bbb
+  ORCH_USER_KEY: 0P#QUJOzJ7Oa%SBM$84)CZ_3uM@*hvB~BBpVHke~_Sn6TItp?KHam4(35OL#kY1D
   ORCH_ACC_NAME: uipatbhekmar
 
 jobs:
@@ -71,8 +71,10 @@ jobs:
             "$packagePath" `
             "${{ env.ORCH_URL }}" `
             "${{ env.ORCH_TENANT }}" `
-            -u "${{ env.ORCH_CLIENT_ID }}" `
-            -p "${{ env.ORCH_USER_KEY }}" `
+            -A "${{ env.ORCH_ACC_NAME }}" `
+            -I "${{ env.ORCH_CLIENT_ID }}" `
+            -S "${{ env.ORCH_USER_KEY }}" `
+            --applicationScope "OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Users.Read OR.Jobs OR.Monitoring"
             -o "${{ env.PROJECT_FOLDER }}" `
             --traceLevel Information `
             --entryPointsPath "Main.xaml"
