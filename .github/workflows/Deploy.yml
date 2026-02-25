@@ -61,10 +61,7 @@ jobs:
       - name: Build Nuget Package
         shell: pwsh
         run: |
-          ${{ github.workspace }}\scripts\UiPathPack.ps1 `
-          ${{ github.workspace }}\project.json `
-          -destination_folder ${{ github.workspace }}\package `
-          -CliPath ${{ github.workspace }}\cli\tools\uipcli.exe
+          & "${{ github.workspace }}\scripts\UiPathPack.ps1" "${{ github.workspace }}\project.json" -destination_folder "${{ github.workspace }}\package" -CliPath "${{ github.workspace }}\cli\tools\uipcli.exe"
 
       - name: Upload UiPath Artifacts
         uses: actions/upload-artifact@v4
