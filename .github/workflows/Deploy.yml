@@ -8,7 +8,7 @@ on:
 # Here the environment variable is declared in workflow level
 env:
   # Replace with your Orchestrator Values
-  PROJECT_NAME: PatientChartDownload_AdvancedMD
+  PROJECT_NAME: TestProject
   PROJECT_FOLDER: Shared
   ORCH_URL: https://staging.uipath.com
   ORCH_TENANT: DefaultTenant
@@ -75,7 +75,7 @@ jobs:
             -I "${{ env.ORCH_CLIENT_ID }}" `
             -S "${{ env.ORCH_USER_KEY }}" `
             --applicationScope "OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Users.Read OR.Jobs OR.Monitoring"
-            -o "${{ env.PROJECT_FOLDER }}" `
+            --organizationUnit "${{ env.PROJECT_FOLDER }}" `
             --traceLevel Information `
             --entryPointsPath "Main.xaml"
 
