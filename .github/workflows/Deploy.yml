@@ -54,7 +54,7 @@ jobs:
       - name: Download UiPath Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: Artifacts
+          name: uipath-package
 
       - name: Publish Nuget Package to DEV
         shell: pwsh
