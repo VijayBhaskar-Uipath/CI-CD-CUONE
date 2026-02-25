@@ -73,7 +73,7 @@ jobs:
             "${{ env.ORCH_TENANT }}" `
             -A "${{ env.ORCH_ACC_NAME }}" `
             -I "${{ env.ORCH_CLIENT_ID }}" `
-            -S "QouB^DSIGnDwBAgg4Qn*IC3e%WRI$Ay_ky5*ZEKSL#rqB0AzE0ch5!G0!?^@_u#t" `
+            -S 'QouB^DSIGnDwBAgg4Qn*IC3e%WRI$Ay_ky5*ZEKSL#rqB0AzE0ch5!G0!?^@_u#t' `
             --applicationScope "OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Users.Read OR.Jobs OR.Monitoring" `
             --organizationUnit "${{ env.PROJECT_FOLDER }}" `
             --traceLevel Information `
