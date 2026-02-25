@@ -74,7 +74,7 @@ jobs:
             -A "${{ env.ORCH_ACC_NAME }}" `
             -I "${{ env.ORCH_CLIENT_ID }}" `
             -S "${{ env.ORCH_USER_KEY }}" `
-            --applicationScope "OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Users.Read OR.Jobs OR.Monitoring"
+            --applicationScope "OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Users.Read OR.Jobs OR.Monitoring" `
             --organizationUnit "${{ env.PROJECT_FOLDER }}" `
             --traceLevel Information `
             --entryPointsPath "Main.xaml"
