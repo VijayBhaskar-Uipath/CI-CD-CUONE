@@ -12,8 +12,8 @@ env:
   PROJECT_FOLDER: Shared
   ORCH_URL: https://staging.uipath.com
   ORCH_TENANT: DefaultTenant
-  ORCH_CLIENT_ID: 37dd8930-88f5-4ce7-9a0f-0794c75a5bbb
-  ORCH_USER_KEY: 0P#QUJOzJ7Oa%SBM$84)CZ_3uM@*hvB~BBpVHke~_Sn6TItp?KHam4(35OL#kY1D
+  ORCH_CLIENT_ID: 85ebb9c0-702b-476e-9d67-68bc983c630e
+  ORCH_USER_KEY: QouB^DSIGnDwBAgg4Qn*IC3e%WRI$Ay_ky5*ZEKSL#rqB0AzE0ch5!G0!?^@_u#t
   ORCH_ACC_NAME: uipatbhekmar
 
 jobs:
