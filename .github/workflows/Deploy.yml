@@ -50,20 +50,31 @@ jobs:
   publish-uipath-nuget-package:
     needs: pack
     runs-on: windows-latest
+
     steps:
-      - name: Download UiPath Artifacts
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download UiPath Artifact
         uses: actions/download-artifact@v4
         with:
           name: uipath-package
+          path: package   # download into /package folder
 
-      - name: Publish Nuget Package to DEV
-        shell: pwsh
+      - name: Deploy to UiPath Orchestrator
+        shell: powershell
         run: |
-          ${{ github.workspace }}\scripts\UiPathDeploy.ps1 `
-          ${{ github.workspace }}\package `
-          ${{ env.ORCH_URL }} `
-          ${{ env.ORCH_TENANT }} `
-          -UserKey ${{ env.ORCH_USER_KEY }} `
-          -account_name ${{ env.ORCH_ACC_NAME }}
+          $cliPath = "${{ github.workspace }}\cli\tools\uipcli.exe"
+          $packagePath = "${{ github.workspace }}\package"
+
+          & "$cliPath" package deploy `
+            "$packagePath" `
+            "${{ env.ORCH_URL }}" `
+            "${{ env.ORCH_TENANT }}" `
+            -u "${{ env.ORCH_CLIENT_ID }}" `
+            -p "${{ env.ORCH_USER_KEY }}" `
+            -o "${{ env.PROJECT_FOLDER }}" `
+            --traceLevel Information `
+            --entryPointsPath "Main.xaml"
 
   
