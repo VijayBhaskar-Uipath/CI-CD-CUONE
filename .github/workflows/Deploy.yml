@@ -17,62 +17,38 @@ env:
   ORCH_ACC_NAME: uipatbhekmar
 
 jobs:
-  print-details:
+  pack:
     runs-on: windows-latest
-    steps:
-      - name: echo-default-env-variables
-        shell: pwsh
-        run: |
-          Write-Output "Home: $env:USERPROFILE"
-          Write-Output "GITHUB_WORKFLOW: $env:GITHUB_WORKFLOW"
-          Write-Output "GITHUB_ACTIONS: $env:GITHUB_ACTIONS"
-          Write-Output "GITHUB_ACTOR: $env:GITHUB_ACTOR"
-          Write-Output "GITHUB_REPOSITORY: $env:GITHUB_REPOSITORY"
-          Write-Output "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
-          Write-Output "GITHUB_WORKSPACE: $env:GITHUB_WORKSPACE"
-          Write-Output "GITHUB_SHA: $env:GITHUB_SHA"
-          Write-Output "GITHUB_REF: $env:GITHUB_REF"
 
-  cleaner:
-    runs-on: windows-latest
     steps:
-      - name: Runner workspace path
-        shell: pwsh
-        run: |
-          Write-Output "Cleaning up previous run"
-          if (Test-Path "${{ github.workspace }}") { Remove-Item -LiteralPath "${{ github.workspace }}" -Recurse -Force -ErrorAction SilentlyContinue }
-
-  build-uipath-nuget-package:
-    needs: cleaner
-    runs-on: windows-latest
-    steps:
-      - name: Check out repository code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ✅ Install required .NET 6 SDK
-      - name: Setup .NET 6
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 6.0.x
-
-      - name: Verify .NET installation
-        run: dotnet --info
-
-      - name: Build Nuget Package
-        shell: pwsh
+      - name: Create output folder
+        shell: powershell
         run: |
-          & "${{ github.workspace }}\scripts\UiPathPack.ps1" "${{ github.workspace }}\project.json" -destination_folder "${{ github.workspace }}\package" -CliPath "${{ github.workspace }}\cli\tools\uipcli.exe"
+          New-Item -ItemType Directory -Force -Path "${{ github.workspace }}\output"
 
-      - name: Upload UiPath Artifacts
+      - name: Pack UiPath Project
+        shell: powershell
+        run: |
+          $projectPath = "${{ github.workspace }}\project.json"
+          $outputPath = "${{ github.workspace }}\output"
+          $cliPath = "${{ github.workspace }}\cli\tools\uipcli.exe"
+
+          & "$cliPath" package pack `
+            "$projectPath" `
+            -o "$outputPath" `
+            --autoVersion
+
+      - name: Upload Package Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Artifacts
-          path: |
-            package/*.*
-            scripts/*.ps1
+          name: uipath-package
+          path: output/*.nupkg
 
   publish-uipath-nuget-package:
-    needs: build-uipath-nuget-package
+    needs: pack
     runs-on: windows-latest
     steps:
       - name: Download UiPath Artifacts
