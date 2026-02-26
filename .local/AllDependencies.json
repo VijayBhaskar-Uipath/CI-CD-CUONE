@@ -23895,9 +23895,9 @@
     "restore": {
       "projectUniqueName": "CI_CD_CUONE",
       "projectName": "CI_CD_CUONE",
-      "projectPath": "C:\\Users\\vijay.bhaskar\\OneDrive - UiPath\\Documents\\Customers\\Credit Union One\\CI-CD-CUONE\\.local",
+      "projectPath": "C:\\Users\\vijay.bhaskar\\OneDrive - UiPath\\Documents\\CI-CD-CUONE\\.local",
       "packagesPath": "C:\\Users\\vijay.bhaskar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vijay.bhaskar\\OneDrive - UiPath\\Documents\\Customers\\Credit Union One\\CI-CD-CUONE\\.local"
+      "outputPath": "C:\\Users\\vijay.bhaskar\\OneDrive - UiPath\\Documents\\CI-CD-CUONE\\.local"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -23943,7 +23943,7 @@
             "version": "[1.21.1, 1.21.1]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\vijay.bhaskar\\OneDrive - UiPath\\Documents\\Customers\\Credit Union One\\CI-CD-CUONE\\cli\\tools\\PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\vijay.bhaskar\\AppData\\Local\\Programs\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
