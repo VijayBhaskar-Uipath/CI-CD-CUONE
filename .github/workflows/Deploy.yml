@@ -13,7 +13,7 @@ env:
   ORCH_URL: https://staging.uipath.com
   ORCH_TENANT: DefaultTenant
   ORCH_CLIENT_ID: 85ebb9c0-702b-476e-9d67-68bc983c630e
-  ORCH_USER_KEY: QouB^DSIGnDwBAgg4Qn*IC3e%WRI$Ay_ky5*ZEKSL#rqB0AzE0ch5!G0!?^@_u#t
+  ORCH_USER_KEY: your client secret here
   ORCH_ACC_NAME: uipatbhekmar
 
 jobs:
@@ -73,7 +73,7 @@ jobs:
             "${{ env.ORCH_TENANT }}" `
             -A "${{ env.ORCH_ACC_NAME }}" `
             -I "${{ env.ORCH_CLIENT_ID }}" `
-            -S 'QouB^DSIGnDwBAgg4Qn*IC3e%WRI$Ay_ky5*ZEKSL#rqB0AzE0ch5!G0!?^@_u#t' `
+            -S "${{ env.ORCH_USER_KEY }}" `
             --applicationScope "OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Users.Read OR.Jobs OR.Monitoring" `
             --organizationUnit "${{ env.PROJECT_FOLDER }}" `
             --traceLevel Information `
